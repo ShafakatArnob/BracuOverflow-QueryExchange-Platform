@@ -38,12 +38,12 @@ const UserSchema = new mongoose.Schema({
         default: [],
     },
     givenReport: {
-        type: Array,
-        default: [],
+        type: Map,
+        of: Boolean,
     },
     receivedReport: {
-        type: Array,
-        default: [],
+        type: Map,
+        of: Boolean,
     },
 }, { timestamps: true });
 
