@@ -28,23 +28,23 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    friends:{
-        type: Array,
-        default: [],
-    },
-    dept: String,
-    contribution: {
-        type: Array,
-        default: [],
-    },
-    givenReport: {
-        type: Map,
-        of: Boolean,
-    },
-    receivedReport: {
-        type: Map,
-        of: Boolean,
-    },
+    // friends:{
+    //     type: Array,
+    //     default: [],
+    // },
+    // dept: String,
+    // contribution: {
+    //     type: Array,
+    //     default: [],
+    // },
+    // givenReport: {
+    //     type: Map,
+    //     of: Boolean,
+    // },
+    // receivedReport: {
+    //     type: Map,
+    //     of: Boolean,
+    // },
 }, { timestamps: true });
 
 

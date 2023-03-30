@@ -12,11 +12,11 @@ export const register = async (req, res) => {
             email,
             password,
             picturePath,
-            friends,
-            dept,
-            contribution,
-            givenReport,
-            receivedReport,
+            // friends,
+            // dept,
+            // contribution,
+            // givenReport,
+            // receivedReport,
         } = req.body;
 
         const salt = await bcrypt.genSalt();
@@ -28,11 +28,11 @@ export const register = async (req, res) => {
             email,
             password: passwordHash,
             picturePath,
-            friends,
-            dept,
-            contribution,
-            givenReport,
-            receivedReport,
+            // friends,
+            // dept,
+            // contribution,
+            // givenReport,
+            // receivedReport,
         });
         const savedUser = await newUser.save();
         res.status(201).json(savedUser);

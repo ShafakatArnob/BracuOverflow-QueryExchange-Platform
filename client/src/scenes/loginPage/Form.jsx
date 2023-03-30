@@ -50,6 +50,10 @@ const Form = () => {
     const isRegister = pageType === "register";
 
     const register = async (values, onSubmitProps) => {
+        // JSON.stringify(values);
+        // console.log("mahi");
+        // console.log(values);
+        // console.log(onSubmitProps);
         // We need FormData to send image with form data, otherwise only could've pass it into the req.body
         const formData = new FormData();
         for(let value in values){
@@ -87,13 +91,18 @@ const Form = () => {
     };
 
     const handleFormSubmit = async (values, onSubmitProps) => {
-        if (isLogin) await login(values, onSubmitProps);
-        if (isRegister) await register(values, onSubmitProps);
+        if (isLogin){
+            await login(values, onSubmitProps);
+        }
+        if (isRegister){
+            await register(values, onSubmitProps);
+        }
     };
 
 
     return (
         <Formik
+        enableReinitialize
         onSubmit={handleFormSubmit} //formik will pass the handleFormSubmit() to handleSubmit()>.
         initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
         validationSchema={isLogin ? loginSchema : registerSchema}
@@ -187,7 +196,7 @@ const Form = () => {
                             p: "1rem",
                             backgroundColor: palette.primary.main,
                             color: palette.background.alt,
-                            "&:hover": { color: palette.primary.main },
+                            "&:hover": { color: palette.primary.main }
                         }}>
                             {isLogin ? "LOGIN" : "REGISTER"}
                     </Button>
