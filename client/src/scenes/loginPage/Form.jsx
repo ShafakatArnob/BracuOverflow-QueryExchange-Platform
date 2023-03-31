@@ -50,20 +50,16 @@ const Form = () => {
     const isRegister = pageType === "register";
 
     const register = async (values, onSubmitProps) => {
-        // JSON.stringify(values);
-        // console.log("mahi");
-        // console.log(values);
-        // console.log(onSubmitProps);
         // We need FormData to send image with form data, otherwise only could've pass it into the req.body
         const formData = new FormData();
         for(let value in values){
             formData.append(value, values[value]);
         }
-        formData.append("picturePath", values.picture.name);
+        // formData.append("picturePath", values.picture.name);
 
         const savedUserResponse = await fetch("http://localhost:3001/auth/register", {method: "POST", body: formData});
         const savedUser = await savedUserResponse.json();
-        onSubmitProps.resetForm();
+        // onSubmitProps.resetForm();
 
         if(savedUser){
             setPageType("login");
@@ -77,7 +73,7 @@ const Form = () => {
             body: JSON.stringify(values),
         });
         const loggedIn = await loggedInResponse.json();
-        onSubmitProps.resetForm();
+        // onSubmitProps.resetForm();
 
         if(loggedIn){
             dispatch(
@@ -91,18 +87,13 @@ const Form = () => {
     };
 
     const handleFormSubmit = async (values, onSubmitProps) => {
-        if (isLogin){
-            await login(values, onSubmitProps);
-        }
-        if (isRegister){
-            await register(values, onSubmitProps);
-        }
+        if (isLogin) await login(values, onSubmitProps);
+        if (isRegister) await register(values, onSubmitProps);
     };
 
 
     return (
         <Formik
-        enableReinitialize
         onSubmit={handleFormSubmit} //formik will pass the handleFormSubmit() to handleSubmit()>.
         initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
         validationSchema={isLogin ? loginSchema : registerSchema}
@@ -190,7 +181,8 @@ const Form = () => {
                 <Box>
                     <Button
                         fullWidth
-                        type="submit"
+                        // type="submit"
+                        onClick={(e) => handleFormSubmit(values)}
                         sx={{
                             m: "2rem 0",
                             p: "1rem",
