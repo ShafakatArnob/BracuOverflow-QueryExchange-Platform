@@ -17,6 +17,7 @@ const registerSchema = yup.object().shape({
     location: yup.string().required("required"),
     occupation: yup.string().required("required"),
     picture: yup.string().required("required"),
+    department: yup.string().required("required"),
 });
 
 const loginSchema = yup.object().shape({
@@ -32,6 +33,7 @@ const initialValuesRegister = {
     location: "",
     occupation: "",
     picture: "",
+    department: "",
 };
 
 const initialValuesLogin = {
@@ -55,7 +57,7 @@ const Form = () => {
         for(let value in values){
             formData.append(value, values[value]);
         }
-        // formData.append("picturePath", values.picture.name);
+        formData.append("picturePath", values.picture.name);
 
         const savedUserResponse = await fetch("http://localhost:3001/auth/register", {method: "POST", body: formData});
         const savedUser = await savedUserResponse.json();
@@ -125,6 +127,16 @@ const Form = () => {
                             error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                             helperText={touched.lastName && errors.lastName}
                             sx={{ gridColumn: "span 2" }}
+                        />
+                        <TextField
+                        label="Department"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.department}
+                        name="department"
+                        error={Boolean(touched.department) && Boolean(errors.department)}
+                        helperText={touched.department && errors.department}
+                        sx={{ gridColumn: "span 4" }}
                         />
 
                         <Box gridColumn="span 4" border={`1px solid ${palette.neutral.medium}`} borderRadius="5px" p="1rem">
