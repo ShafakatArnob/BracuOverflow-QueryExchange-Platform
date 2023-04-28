@@ -20,6 +20,11 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const medium = palette.neutral.medium;
 
     const isFriend = friends.find((friend) => friend._id === friendId);
+    // let isFriend = '';
+    // const isFriend2 = async () => {
+    //     isFriend = await friends.find((friend) => friend._id === friendId);
+    // }
+    // isFriend2();
 
     const patchFriend = async () => {
         const response = await fetch(`http://localhost:3001/users/${_id}/${friendId}`,{
@@ -28,9 +33,11 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
                 },
+            body: JSON.stringify(friends)
             }
         );
         const data = await response.json();
+        console.log(data)
         dispatch(setFriends({ friends: data }));
     };
 
