@@ -6,6 +6,7 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 
 
 const PostWidget = ({
@@ -89,7 +90,8 @@ const PostWidget = ({
                 </FlexBetween>
 
                 <IconButton>
-                    <ShareOutlined />
+                    {/* <ShareOutlined /> */}
+                    <FlagOutlinedIcon />
                 </IconButton>
             </FlexBetween>
             {isComments && (
